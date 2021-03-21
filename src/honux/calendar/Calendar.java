@@ -1,7 +1,5 @@
 package honux.calendar;
 
-import java.util.Scanner;
-
 public class Calendar {
 	private static final int[] MAX_DAYS = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 	private static final int[] LEAP_MAX_DAYS = { 0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
@@ -17,15 +15,19 @@ public class Calendar {
 		return isLeapYear(year) ? LEAP_MAX_DAYS[month] : MAX_DAYS[month];
 	}
 
-	public void printCalendar(int year, int month) {
+	public void printCalendar(int year, int month, int weekday) {
 		System.out.printf("   <<%4d년%3d월>>\n", year, month);
 		System.out.println(" SU MO TU WE TH FR SA");
 		System.out.println("---------------------");
 		
+		for (int i = 0; i < weekday; i++) {
+			System.out.print("   ");
+		}
+		
 		int maxDays = getMaxDaysOfMonth(year, month);
 		for (int i = 1; i <= maxDays; i++) {
 			System.out.printf("%3d", i);
-			if (i % 7 == 0 || i == maxDays)
+			if (i % 7 == (7 - weekday) % 7 || i == maxDays)
 				System.out.println();
 		}
 		System.out.println();
