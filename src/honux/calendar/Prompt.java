@@ -1,6 +1,5 @@
 package honux.calendar;
 
-import java.text.ParseException;
 import java.util.Scanner;
 
 public class Prompt {
@@ -72,8 +71,8 @@ public class Prompt {
 		System.out.println("날짜를 입력해 주세요. (yyyy-mm-dd)");
 		String strDate = scanner.nextLine().trim();
 		
-		String plan = cal.searchPlan(strDate);
-		System.out.println(plan);
+		PlanItem plan = cal.searchPlan(strDate);
+		System.out.println(plan == null ? "일정이 없습니다." : plan.detail);
 	}
 
 	private void cmdRegister(Scanner scanner, Calendar cal) {

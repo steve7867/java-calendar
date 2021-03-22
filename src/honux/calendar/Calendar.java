@@ -1,7 +1,6 @@
 package honux.calendar;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -9,10 +8,10 @@ public class Calendar {
 	private static final int[] MAX_DAYS = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 	private static final int[] LEAP_MAX_DAYS = { 0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
-	private HashMap<Date, String> planMap = new HashMap<>();
+	private HashMap<Date, PlanItem> planMap = new HashMap<>();
 
 	public Calendar() {
-		this.planMap = new HashMap<Date, String>();
+		this.planMap = new HashMap<Date, PlanItem>();
 	}
 
 	/**
@@ -22,25 +21,13 @@ public class Calendar {
 	 * @throws ParseException
 	 */
 	public void registerPlan(String strDate, String plan) {
-		try {
-			Date date = new SimpleDateFormat("yyyy-mm-dd").parse(strDate);
-			planMap.put(date, plan);
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.err.println("일정 등록 중 오류가 발생했습니다.");
-		}
+		PlanItem p = new PlanItem(strDate, plan);
+		planMap.put(p.getPlanDate(), p);
 	}
 	
-	public String searchPlan(String strDate) {
-		String plan = null;
-		try {
-			Date date = new SimpleDateFormat("yyyy-mm-dd").parse(strDate);
-			plan = planMap.get(date);
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.err.println("일정 검색 중 오류가 발생했습니다.");
-		}
-		return plan;
+	public PlanItem searchPlan(String strDate) {
+		Date date = PlanItem.getDateFromString(strDate);
+		return planMap.get(date);
 	}
 
 	private boolean isLeapYear(int year) {
