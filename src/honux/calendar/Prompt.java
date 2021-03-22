@@ -4,14 +4,6 @@ import java.util.Scanner;
 
 public class Prompt {
 	
-	public void printMenu() {
-		System.out.println("+----------------------+");
-		System.out.println("| 1. 일정 등록");
-		System.out.println("| 2. 일정 검색");
-		System.out.println("| 3. 달력 보기");
-		System.out.println("| h. 도움말 q. 종료");
-		System.out.println("+----------------------+");
-	}
 	
 	public void runPrompt() {
 		printMenu();
@@ -44,6 +36,15 @@ public class Prompt {
 		
 		System.out.println("Thank you. Bye~");
 		scanner.close();
+	}
+	
+	private void printMenu() {
+		System.out.println("+----------------------+");
+		System.out.println("| 1. 일정 등록");
+		System.out.println("| 2. 일정 검색");
+		System.out.println("| 3. 달력 보기");
+		System.out.println("| h. 도움말 q. 종료");
+		System.out.println("+----------------------+");
 	}
 
 	private void cmdCal(Scanner scanner, Calendar cal) {

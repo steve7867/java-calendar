@@ -1,6 +1,3 @@
-/**
- * 
- */
 package honux.calendar;
 
 import java.text.ParseException;
@@ -38,5 +35,14 @@ public class PlanItem {
 	
 	public void addPeople(String name) {
 		people += name + ", ";
+	}
+
+	/**
+	 * @return
+	 */
+	public String saveString() {
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		String sdate = formatter.format(planDate);
+		return sdate + "," + "\"" + detail + "\"" + "\n";
 	}
 }
