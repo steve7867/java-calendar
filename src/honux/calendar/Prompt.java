@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class Prompt {
 	
-	
 	public void runPrompt() {
 		printMenu();
 		
@@ -12,26 +11,33 @@ public class Prompt {
 		Calendar cal = new Calendar();
 		
 		boolean isLoop = true;
-		while (isLoop) {
-			System.out.println("명령 (1, 2, 3, h, q)");
-			String cmd = scanner.nextLine().trim();
-			switch (cmd) {
-			case "1":
-				cmdRegister(scanner, cal);
-				break;
-			case "2":
-				cmdSearch(scanner, cal);
-				break;
-			case "3":
-				cmdCal(scanner, cal);
-				break;
-			case "h":
-				printMenu();
-				break;
-			case "q":
-				isLoop = false;
-				break;
+		try {
+			while (isLoop) {
+				System.out.println("명령 (1, 2, 3, h, q)");
+				String cmd = scanner.nextLine().trim();
+				switch (cmd) {
+				case "1":
+					cmdRegister(scanner, cal);
+					break;
+				case "2":
+					cmdSearch(scanner, cal);
+					break;
+				case "3":
+					cmdCal(scanner, cal);
+					break;
+				case "h":
+					printMenu();
+					break;
+				case "q":
+					isLoop = false;
+					break;
+				default:
+					throw new IllegalAccessException("unknown cmd");
+				}
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("잘못된 명령 입력!");
 		}
 		
 		System.out.println("Thank you. Bye~");
@@ -73,7 +79,7 @@ public class Prompt {
 		String strDate = scanner.nextLine().trim();
 		
 		PlanItem plan = cal.searchPlan(strDate);
-		System.out.println(plan == null ? "일정이 없습니다." : plan.detail);
+		System.out.println(plan == null ? "일정이 없습니다." : plan.getDetail());
 	}
 
 	private void cmdRegister(Scanner scanner, Calendar cal) {

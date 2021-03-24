@@ -60,7 +60,7 @@ public class Calendar {
 	}
 	
 	public PlanItem searchPlan(String strDate) {
-		Date date = PlanItem.getDateFromString(strDate);
+		Date date = PlanItem.getDateOrNullFromString(strDate);
 		return planMap.get(date);
 	}
 

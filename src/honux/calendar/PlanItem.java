@@ -5,11 +5,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class PlanItem {
-	public Date planDate;
-	public String detail;
-	public String people = "";
+	private Date planDate;
+	private String detail;
+	private String people = "";
 
-	public static Date getDateFromString(String strDate) {
+	public static Date getDateOrNullFromString(String strDate) {
 		Date date = null;
 		try {
 			date = new SimpleDateFormat("yyyy-mm-dd").parse(strDate);
@@ -25,14 +25,32 @@ public class PlanItem {
 	 * @param detail
 	 */
 	public PlanItem(String strDate, String detail) {
-		this.planDate = getDateFromString(strDate);
+		this.planDate = getDateOrNullFromString(strDate);
 		this.detail = detail;
 	}
 	
+	
+	/**
+	 * @return the plandDate
+	 */
 	public Date getPlanDate() {
 		return planDate;
 	}
+
+	/**
+	 * @return the detail
+	 */
+	public String getDetail() {
+		return detail;
+	}
 	
+	/**
+	 * @param detail the detail to set
+	 */
+	public void setDetail(String detail) {
+		this.detail = detail;
+	}
+
 	public void addPeople(String name) {
 		people += name + ", ";
 	}
